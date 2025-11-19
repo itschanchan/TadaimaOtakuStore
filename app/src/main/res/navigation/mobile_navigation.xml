@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <action
+        android:id="@+id/action_global_to_nav_wishlist"
+        app:destination="@id/nav_wishlist" />
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.ciit.tadaimaotakustore.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_item_view"
+            app:destination="@id/nav_item_view" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_cart"
+            app:destination="@id/nav_cart" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.ciit.tadaimaotakustore.ui.profile.ProfilePage"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile_page" />
+
+    <fragment
+        android:id="@+id/nav_listing"
+        android:name="com.ciit.tadaimaotakustore.ListingFragment"
+        android:label="Sell"
+        tools:layout="@layout/fragment_listing" />
+
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="com.ciit.tadaimaotakustore.Categories"
+        android:label="@string/menu_categories"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/nav_item_view"
+        android:name="com.ciit.tadaimaotakustore.ItemViewFragment"
+        android:label="Item View"
+        tools:layout="@layout/fragment_item_view">
+        <action
+            android:id="@+id/action_nav_item_view_to_nav_full_screen_image"
+            app:destination="@id/nav_full_screen_image" />
+        <argument
+            android:name="itemName"
+            app:argType="string" />
+        <argument
+            android:name="itemPrice"
+            app:argType="float" />
+        <argument
+            android:name="imageResId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_full_screen_image"
+        android:name="com.ciit.tadaimaotakustore.FullScreenImageFragment"
+        android:label="Full Screen Image"
+        tools:layout="@layout/fragment_full_screen_image">
+        <argument
+            android:name="imageResId"
+            app:argType="integer" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/nav_wishlist"
+        android:name="com.ciit.tadaimaotakustore.WishlistFragment"
+        android:label="Wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.ciit.tadaimaotakustore.CartFragment"
+        android:label="Shopping Cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.ciit.tadaimaotakustore.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_nav_dashboard_self"
+            app:destination="@id/nav_dashboard" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_notifications"
+        android:name="com.ciit.tadaimaotakustore.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.ciit.tadaimaotakustore.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_nav_gallery_self"
+            app:destination="@id/nav_gallery" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.ciit.tadaimaotakustore.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <action
+        android:id="@+id/action_global_to_nav_cart"
+        app:destination="@id/nav_cart" />
+
+</navigation>
