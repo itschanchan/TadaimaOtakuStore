@@ -1,0 +1,8 @@
+<!-- res/drawable/button_signup_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#D2691E" /> <!-- A shade of brown/orange -->
+    <corners android:radius="8dp" />
+    <stroke android:width="3dp" android:color="#A0522D" /> <!-- Darker border -->
+</shape>
+        
