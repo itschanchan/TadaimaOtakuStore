@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer Shadow/Border (Darker Green) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#388E3C" /> <!-- Dark Green -->
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- Main Button Body (Lighter Green) - inset to create the border effect -->
+    <item android:bottom="4dp" android:left="2dp" android:right="2dp" android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#C8E6C9" /> <!-- Light Green -->
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+</layer-list>
+    
