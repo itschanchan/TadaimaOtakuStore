@@ -1,5 +1,7 @@
 package com.ciit.tadaimaotakustore
 
+import androidx.core.content.ContextCompat
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -46,6 +48,11 @@ class HomeScreenActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
         binding.appBarHomeScreen.bottomNavView.setupWithNavController(navController)
+
+        binding.appBarHomeScreen.toolbar.navigationIcon?.setColorFilter(
+            ContextCompat.getColor(this, android.R.color.black),
+            PorterDuff.Mode.SRC_ATOP
+        )
 
         wishlistViewModel.wishlistItemCount.observe(this) { count ->
             updateWishlistBadge(count)
