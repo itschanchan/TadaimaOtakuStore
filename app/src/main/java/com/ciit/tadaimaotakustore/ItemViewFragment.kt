@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.ciit.tadaimaotakustore.ui.cart.CartItem
+import com.ciit.tadaimaotakustore.ui.cart.CartViewModel
 import com.ciit.tadaimaotakustore.databinding.FragmentItemViewBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -33,11 +35,11 @@ class ItemViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val itemName = arguments?.getString("itemName")
-        val itemPrice = arguments?.getFloat("itemPrice")
+        val itemPrice = arguments?.getFloat("itemPrice") ?: 0f
         val imageResId = arguments?.getInt("imageResId") ?: R.drawable.carousel_image_1
 
         binding.tvItemName.text = itemName
-        binding.tvPrice.text = "PHP " + String.format("%.2f", itemPrice)
+        binding.tvPrice.text = "₱" + String.format("%.2f", itemPrice)
 
         val images = listOf(imageResId) // For now, only show the first image
 
@@ -65,20 +67,28 @@ class ItemViewFragment : Fragment() {
         }
 
         val currentItem = WishlistItem(imageResId.toString(), itemName ?: "")
-        val cartItem = CartItem(imageResId.toString(), itemName ?: "", 1)
+        val cartItem = CartItem(imageResId.toString(), itemName ?: "", 1, itemPrice)
 
-        binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.action_add_to_cart -> {
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_chat -> {
+                    Snackbar.make(view, "Chat feature coming soon!", Snackbar.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.nav_add_to_cart -> {
                     cartViewModel.addToCart(cartItem)
                     Snackbar.make(view, "Added to cart!", Snackbar.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.nav_buy_now -> {
+                    Snackbar.make(view, "Buy Now feature coming soon!", Snackbar.LENGTH_SHORT).show()
                     true
                 }
                 else -> false
             }
         }
 
-        cartViewModel.cartItemCount.observe(viewLifecycleOwner) {
+        cartViewModel.totalCartItemQuantity.observe(viewLifecycleOwner) {
             updateCartBadge(it)
         }
 

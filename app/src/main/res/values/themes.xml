@@ -12,7 +12,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.TadaimaOtakuStore.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.TadaimaOtakuStore.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.TadaimaOtakuStore.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

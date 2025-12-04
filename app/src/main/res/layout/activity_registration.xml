@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F8F6FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/registerLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Create Account"
+            android:textColor="#4B0082"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- Name Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editFirstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:hint="First Name"
+                android:inputType="textCapWords"
+                android:autofillHints="given-name"
+                android:fontFamily="sans-serif"
+                android:background="@android:drawable/editbox_background"
+                android:padding="15dp" />
+
+            <EditText
+                android:id="@+id/editLastName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:hint="Last Name"
+                android:inputType="textCapWords"
+                android:autofillHints="family-name"
+                android:fontFamily="sans-serif"
+                android:background="@android:drawable/editbox_background"
+                android:padding="15dp" />
+
+        </LinearLayout>
+
+        <!-- Birthdate Section -->
+        <TextView
+            android:id="@+id/tvBirthdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Date of Birth"
+            android:textColor="#6A0DAD"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="serif" />
+
+        <Button
+            android:id="@+id/datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="20dp"
+            android:text="SELECT YOUR BIRTHDATE"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:backgroundTint="#E6E6FA"
+            android:textColor="#4B0082"
+            android:textStyle="bold" />
+
+        <!-- Gender Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Gender"
+            android:textColor="#6A0DAD"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="serif" />
+
+        <RadioGroup
+            android:id="@+id/genderRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <RadioButton
+                android:id="@+id/maleRadio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Male"
+                android:fontFamily="sans-serif"
+                android:textColor="#4B0082" />
+
+            <RadioButton
+                android:id="@+id/femaleRadio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Female"
+                android:fontFamily="sans-serif"
+                android:textColor="#4B0082" />
+
+            <RadioButton
+                android:id="@+id/othersRadio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Others"
+                android:fontFamily="sans-serif"
+                android:textColor="#4B0082" />
+
+        </RadioGroup>
+
+        <!-- Username -->
+        <EditText
+            android:id="@+id/editUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="Username"
+            android:inputType="text"
+            android:autofillHints="username"
+            android:fontFamily="sans-serif"
+            android:background="@android:drawable/editbox_background"
+            android:padding="15dp" />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:autofillHints="email"
+            android:fontFamily="sans-serif"
+            android:background="@android:drawable/editbox_background"
+            android:padding="15dp" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/editPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Create Password"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:fontFamily="sans-serif"
+            android:background="@android:drawable/editbox_background"
+            android:padding="15dp" />
+
+        <!-- Confirm Password -->
+        <EditText
+            android:id="@+id/editRePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:fontFamily="sans-serif"
+            android:background="@android:drawable/editbox_background"
+            android:padding="15dp" />
+
+        <!-- Centered Checkboxes Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Show Password - Centered -->
+            <CheckBox
+                android:id="@+id/showPassCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="Show Password"
+                android:fontFamily="sans-serif"
+                android:textColor="#6A0DAD" />
+
+            <!-- Terms & Conditions - Centered -->
+            <CheckBox
+                android:id="@+id/tc_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to the terms and conditions"
+                android:fontFamily="sans-serif"
+                android:textColor="#6A0DAD" />
+
+        </LinearLayout>
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/regis_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Create Account"
+            android:textSize="18sp"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:backgroundTint="#6A0DAD"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+</ScrollView>

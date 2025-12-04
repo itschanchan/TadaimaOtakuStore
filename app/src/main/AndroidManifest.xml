@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TadaimaOtakuStore"
         tools:targetApi="31">
         <activity
+            android:name=".Registration"
+            android:exported="false" />
+        <activity
             android:name=".SideNavigationDrawerActivity"
             android:exported="false"
             android:label="@string/title_activity_side_navigation_drawer"

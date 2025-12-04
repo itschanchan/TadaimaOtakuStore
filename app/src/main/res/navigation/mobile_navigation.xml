@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <action
         android:id="@+id/action_global_to_nav_wishlist"
@@ -23,6 +23,18 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_trade"
+        android:name="com.ciit.tadaimaotakustore.TradeFragment"
+        android:label="Trade"
+        tools:layout="@layout/fragment_trade" />
+
+    <fragment
+        android:id="@+id/nav_marketplace"
+        android:name="com.ciit.tadaimaotakustore.MarketplaceFragment"
+        android:label="Marketplace"
+        tools:layout="@layout/fragment_marketplace" />
+
+    <fragment
         android:id="@+id/nav_profile"
         android:name="com.ciit.tadaimaotakustore.ui.profile.ProfilePage"
         android:label="@string/menu_profile"
@@ -36,7 +48,7 @@
 
     <fragment
         android:id="@+id/nav_categories"
-        android:name="com.ciit.tadaimaotakustore.Categories"
+        android:name="com.ciit.tadaimaotakustore.CategoriesFragment"
         android:label="@string/menu_categories"
         tools:layout="@layout/fragment_categories" />
 
@@ -77,7 +89,7 @@
 
     <fragment
         android:id="@+id/nav_cart"
-        android:name="com.ciit.tadaimaotakustore.CartFragment"
+        android:name="com.ciit.tadaimaotakustore.ui.cart.CartFragment"
         android:label="Shopping Cart"
         tools:layout="@layout/fragment_cart" />
 

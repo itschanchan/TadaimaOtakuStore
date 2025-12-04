@@ -16,5 +16,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, HomeScreenActivity::class.java)
             startActivity(intent)
         }
+
+        val registerButton = findViewById<Button?>(R.id.signUpButton)
+        registerButton?.setOnClickListener {
+            val intent = Intent(this, Registration::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -34,7 +34,7 @@ class RecommendationAdapter(private val items: List<RecommendationItem>) :
         fun bind(item: RecommendationItem) {
             binding.ivRecommendation.setImageResource(item.imageResource)
             binding.tvItemName.text = item.name
-            binding.tvItemPrice.text = "PHP " + String.format("%.2f", item.price)
+            binding.tvItemPrice.text = "₱" + String.format("%.2f", item.price)
         }
     }
 }

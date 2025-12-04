@@ -2,6 +2,7 @@ package com.ciit.tadaimaotakustore
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -26,11 +27,6 @@ class SideNavigationDrawerActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarSideNavigationDrawer.toolbar)
 
-        binding.appBarSideNavigationDrawer.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
-        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_side_navigation_drawer)
@@ -38,11 +34,36 @@ class SideNavigationDrawerActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_trade, R.id.nav_marketplace, R.id.nav_categories, R.id.nav_featured
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_trade -> {
+                    navController.navigate(R.id.nav_trade)
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                R.id.nav_marketplace -> {
+                    navController.navigate(R.id.nav_marketplace)
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                R.id.nav_categories -> {
+                    navController.navigate(R.id.nav_categories)
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                R.id.nav_featured -> {
+                    Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
