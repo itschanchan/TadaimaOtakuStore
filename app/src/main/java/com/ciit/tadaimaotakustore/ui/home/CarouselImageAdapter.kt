@@ -21,7 +21,7 @@ class CarouselImageAdapter(private val images: List<Int>) :
 
     inner class ViewHolder(private val binding: ItemCarouselImageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imageRes: Int) {
-            binding.ivCarouselImage.setImageResource(imageRes)
+            binding.imageView.setImageResource(imageRes)
         }
     }
 }

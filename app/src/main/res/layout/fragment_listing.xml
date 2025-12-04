@@ -1,89 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ListingFragment"
-    android:orientation="vertical"
-    android:gravity="center">
-
-    <TextView
-        android:id="@+id/tvListingHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sell your item!"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tvItemPhoto"
-        android:layout_width="218dp"
-        android:layout_height="wrap_content"
-        android:text="Upload yout photo: " />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="219dp"
-        android:layout_height="wrap_content"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/tvItemName"
-        android:layout_width="207dp"
-        android:layout_height="wrap_content"
-        android:text="Item Name:" />
-
-    <EditText
-        android:id="@+id/editItemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Item name here"
-        android:inputType="text"
-        android:minHeight="48dp" />
-
-    <Button
-        android:id="@+id/categoryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category" />
-
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="213dp"
-        android:layout_height="wrap_content"
-        android:text="Price:" />
-
-    <EditText
-        android:id="@+id/editPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Price here"
-        android:inputType="numberDecimal"
-        android:minHeight="48dp" />
-
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="215dp"
-        android:layout_height="wrap_content"
-        android:text="Description" />
-
-    <EditText
-        android:id="@+id/editDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="163dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:hint="Describe your item &lt;3"/>
-
-    <Button
-        android:id="@+id/listButton"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:text="List It!" />
-
-
-</LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" tools:context=".ListingFragment" android:layout_marginBottom="100dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:padding="16dp">
+        <TextView android:id="@+id/tvListingHeader" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sell your item!" android:textSize="25sp" android:textStyle="bold" android:layout_marginBottom="16dp"/>
+        <TextView android:id="@+id/tvItemPhoto" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Upload your photo: " android:layout_marginBottom="8dp"/>
+        <FrameLayout android:id="@+id/imageContainer" android:layout_width="match_parent" android:layout_height="220dp" android:layout_marginBottom="8dp">
+            <ImageButton android:id="@+id/uploadImageButton" android:layout_width="match_parent" android:layout_height="match_parent" android:background="?attr/selectableItemBackground" android:contentDescription="Upload photos" android:scaleType="centerCrop" android:src="@drawable/photo_item_placeholder"/>
+            <RelativeLayout android:id="@+id/carouselContainer" android:layout_width="match_parent" android:layout_height="match_parent" android:visibility="gone" tools:visibility="visible">
+                <androidx.viewpager2.widget.ViewPager2 android:id="@+id/imageCarousel" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                <ImageButton android:id="@+id/prevButton" android:layout_width="48dp" android:layout_height="48dp" android:layout_alignParentStart="true" android:layout_centerVertical="true" android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="Previous Image" android:src="@drawable/ic_arrow_left"/>
+                <ImageButton android:id="@+id/nextButton" android:layout_width="48dp" android:layout_height="48dp" android:layout_alignParentEnd="true" android:layout_centerVertical="true" android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="Next Image" android:src="@drawable/ic_arrow_right"/>
+            </RelativeLayout>
+        </FrameLayout>
+        <com.google.android.material.tabs.TabLayout android:id="@+id/carouselIndicator" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone" app:tabBackground="@drawable/carousel_indicator_selector" app:tabGravity="center" app:tabIndicatorHeight="0dp" tools:visibility="visible" android:layout_marginBottom="16dp"/>
+        <TextView android:id="@+id/tvItemName" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Item Name:" android:layout_marginBottom="8dp"/>
+        <EditText android:id="@+id/editItemName" android:layout_width="match_parent" android:layout_height="wrap_content" android:ems="10" android:hint="Item name here" android:inputType="text" android:minHeight="48dp" android:layout_marginBottom="16dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="16dp">
+            <Spinner android:id="@+id/categorySpinner" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:entries="@array/categories_array" android:minHeight="48dp" android:layout_marginEnd="8dp"/>
+            <Spinner android:id="@+id/tagsSpinner" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:entries="@array/tags_array" android:minHeight="48dp" android:layout_marginStart="8dp"/>
+        </LinearLayout>
+        <TextView android:id="@+id/tvPrice" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Price:" android:layout_marginBottom="8dp"/>
+        <EditText android:id="@+id/editPrice" android:layout_width="match_parent" android:layout_height="wrap_content" android:ems="10" android:hint="Price here" android:inputType="numberDecimal" android:minHeight="48dp" android:layout_marginBottom="16dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/edit_text_border" android:padding="8dp" android:layout_marginBottom="16dp">
+            <TextView android:id="@+id/tvDescription" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Description" android:layout_marginBottom="8dp"/>
+            <EditText android:id="@+id/editDescription" android:layout_width="match_parent" android:layout_height="163dp" android:ems="10" android:gravity="start|top" android:inputType="textMultiLine" android:hint="Describe your item &lt;3" android:background="@null"/>
+        </LinearLayout>
+        <Button android:id="@+id/listButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="List It!"/>
+    </LinearLayout>
+</ScrollView>
