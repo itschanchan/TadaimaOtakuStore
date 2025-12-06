@@ -10,7 +10,12 @@ import android.view.Gravity
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.ciit.tadaimaotakustore.data.AppDatabase
+import com.ciit.tadaimaotakustore.data.User
 import com.ciit.tadaimaotakustore.databinding.ActivityRegistrationBinding
+import kotlinx.coroutines.launch
+import java.security.MessageDigest
 import java.util.Calendar
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -109,11 +114,45 @@ class Registration : AppCompatActivity() {
                 val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
                 val selectedDate = dateFormat.format(calendar.time)
 
-                showSuccessToast()
-
-                showDialogBox(getFirstName, getLastName, getEmail, getUsername, getPassword, getGender, selectedDate)
+                val passwordHash = hashPassword(getPassword)
+                val user = User(
+                    firstName = getFirstName,
+                    lastName = getLastName,
+                    birthDate = selectedDate,
+                    gender = getGender,
+                    username = getUsername,
+                    email = getEmail,
+                    passwordHash = passwordHash
+                )
+                lifecycleScope.launch {
+                    val userDao = AppDatabase.getDatabase(applicationContext).userDao()
+                    userDao.addUser(user)
+                    showSuccessToast()
+                    val intent = Intent(this@Registration, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
+    }
+
+    private fun hashPassword(password: String): String {
+        val digest = MessageDigest.getInstance("SHA-256")
+        val hashedBytes = digest.digest(password.toByteArray(Charsets.UTF_8))
+        return bytesToHex(hashedBytes)
+    }
+
+    private fun bytesToHex(bytes: ByteArray): String {
+        val hexChars = "0123456789abcdef"
+        val result = StringBuilder(bytes.size * 2)
+        bytes.forEach { byte ->
+            val value = byte.toInt()
+            val hex1 = hexChars[value ushr 4 and 0x0F]
+            val hex2 = hexChars[value and 0x0F]
+            result.append(hex1)
+            result.append(hex2)
+        }
+        return result.toString()
     }
 
     private fun showSuccessToast() {
@@ -155,47 +194,6 @@ class Registration : AppCompatActivity() {
         text?.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL))
 
         toast.show()
-    }
-
-    // Display User Info - UPDATED to include birthdate
-    private fun showDialogBox(getFirstName: String, getLastName: String, getEmail: String, getUsername: String, getPassword: String, getGender: String, birthDate: String) {
-        // Customize theme for alert box
-        val titleView = TextView(this).apply {
-            text = "Registration Successful!"
-            textSize = 20f
-            setTypeface(Typeface.create("serif", Typeface.BOLD))
-            setTextColor(0xFF6A0DAD.toInt()) // Purple Text
-            gravity = Gravity.CENTER
-            setPadding(0, 40, 0, 20)
-        }
-
-        // Alert Box - Updated to include birthdate
-        val builder = AlertDialog.Builder(this)
-            .setCustomTitle(titleView)
-            .setMessage("""
-                First Name: $getFirstName
-                Last Name: $getLastName
-                Email: $getEmail
-                Username: $getUsername
-                Password: $getPassword
-                Gender: $getGender
-                Birth Date: $birthDate
-                Terms & Conditions: Accepted
-            """.trimIndent())
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("email", getEmail)
-                intent.putExtra("pass", getPassword)
-                startActivity(intent)
-            }
-
-        val alertDialog = builder.create()
-
-        // Set simple background color instead of missing drawable
-        alertDialog.window?.setBackgroundDrawableResource(android.R.color.white)
-
-        alertDialog.show()
     }
 
     private fun showDatePicker() {

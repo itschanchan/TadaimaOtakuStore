@@ -1,3 +1,3 @@
 package com.ciit.tadaimaotakustore
 
-data class RecommendationItem(val imageResource: Int, val name: String, val price: Double)
+data class RecommendationItem(val imageResource: Int, val name: String, val price: Double, val tag: String)

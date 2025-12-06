@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.ciit.tadaimaotakustore.ui.cart.CartItem
 import com.ciit.tadaimaotakustore.ui.cart.CartViewModel
@@ -22,6 +23,7 @@ class ItemViewFragment : Fragment() {
 
     private val wishlistViewModel: WishlistViewModel by activityViewModels()
     private val cartViewModel: CartViewModel by activityViewModels()
+    private val args: ItemViewFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,22 +36,22 @@ class ItemViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val itemName = arguments?.getString("itemName")
-        val itemPrice = arguments?.getFloat("itemPrice") ?: 0f
-        val imageResId = arguments?.getInt("imageResId") ?: R.drawable.carousel_image_1
+        binding.tvItemName.text = args.itemName
+        binding.tvPrice.text = "₱" + String.format("%.2f", args.itemPrice)
+        binding.btnTag.text = args.itemTag
 
-        binding.tvItemName.text = itemName
-        binding.tvPrice.text = "₱" + String.format("%.2f", itemPrice)
-
-        val images = listOf(imageResId) // For now, only show the first image
+        val images = listOf(args.imageResId) // For now, only show the first image
 
         val adapter = ImagePagerAdapter(images) { imageResId ->
-            val bundle = Bundle().apply {
-                putInt("imageResId", imageResId)
-            }
-            findNavController().navigate(R.id.action_nav_item_view_to_nav_full_screen_image, bundle)
+            val action = ItemViewFragmentDirections.actionNavItemViewToNavFullScreenImage(imageResId)
+            findNavController().navigate(action)
         }
         binding.itemViewPager.adapter = adapter
+
+        binding.btnTag.setOnClickListener {
+            val action = ItemViewFragmentDirections.actionNavItemViewToNavCategoryItemsView(args.itemTag)
+            findNavController().navigate(action)
+        }
 
         binding.itemViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -66,8 +68,8 @@ class ItemViewFragment : Fragment() {
             binding.itemViewPager.currentItem = binding.itemViewPager.currentItem + 1
         }
 
-        val currentItem = WishlistItem(imageResId.toString(), itemName ?: "")
-        val cartItem = CartItem(imageResId.toString(), itemName ?: "", 1, itemPrice)
+        val currentItem = WishlistItem(args.imageResId.toString(), args.itemName)
+        val cartItem = CartItem(args.imageResId.toString(), args.itemName, 1, args.itemPrice)
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -118,7 +120,7 @@ class ItemViewFragment : Fragment() {
         // Set initial counter text
         binding.tvImageCounter.text = "1 / ${images.size}"
 
-        val startingPosition = images.indexOf(imageResId)
+        val startingPosition = images.indexOf(args.imageResId)
         if (startingPosition != -1) {
             binding.itemViewPager.currentItem = startingPosition
         }

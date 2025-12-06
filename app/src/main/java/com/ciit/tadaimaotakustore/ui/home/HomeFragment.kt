@@ -37,9 +37,9 @@ class HomeFragment : Fragment() {
 
         // Recommendations
         val recommendationItems = listOf(
-            RecommendationItem(R.drawable.product_suletta_plushie, "Suletta Plushie", 800.00),
-            RecommendationItem(R.drawable.product_miorine_plushie, "Miorine Plushie", 800.00),
-            RecommendationItem(R.drawable.product_sd_gundam_aerial, "SD Gundam Aerial", 1200.00)
+            RecommendationItem(R.drawable.product_suletta_plushie, "Suletta Plushie", 800.00, "Plushies"),
+            RecommendationItem(R.drawable.product_miorine_plushie, "Miorine Plushie", 800.00, "Plushies"),
+            RecommendationItem(R.drawable.product_sd_gundam_aerial, "SD Gundam Aerial", 1200.00, "Figurines")
         )
         val recommendationAdapter = RecommendationAdapter(recommendationItems)
         binding.rvRecommendations.layoutManager = GridLayoutManager(requireContext(), 3)

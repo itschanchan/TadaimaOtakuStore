@@ -116,17 +116,16 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvTags"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tags: " />
 
                 <Button
-                    android:id="@+id/tagsButton"
+                    android:id="@+id/btnTag"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tags" />
+                    android:text="Tag" />
             </LinearLayout>
 
             <TextView

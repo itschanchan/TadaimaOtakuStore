@@ -44,7 +44,7 @@ class HomeScreenActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home
+                R.id.nav_home, R.id.nav_categories
             ), binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ciit.tadaimaotakustore.databinding.ItemRecommendationBinding
+import com.ciit.tadaimaotakustore.ui.home.HomeFragmentDirections
 
 class RecommendationAdapter(private val items: List<RecommendationItem>) :
     RecyclerView.Adapter<RecommendationAdapter.ViewHolder>() {
@@ -19,12 +20,8 @@ class RecommendationAdapter(private val items: List<RecommendationItem>) :
         val item = items[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("itemName", item.name)
-                putFloat("itemPrice", item.price.toFloat())
-                putInt("imageResId", item.imageResource)
-            }
-            it.findNavController().navigate(R.id.action_nav_home_to_nav_item_view, bundle)
+            val action = HomeFragmentDirections.actionNavHomeToNavItemView(item.name, item.price.toFloat(), item.imageResource, item.tag)
+            it.findNavController().navigate(action)
         }
     }
 
