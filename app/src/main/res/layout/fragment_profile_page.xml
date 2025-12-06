@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".ui.profile.ProfilePageFragment">
+    android:background="#f9f9f9"
+    tools:context=".ui.profile.ProfilePage">
 
     <!-- Profile Image -->
     <ImageView
@@ -115,6 +115,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/account_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4 years"

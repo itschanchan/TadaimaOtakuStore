@@ -11,8 +11,8 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.ciit.tadaimaotakustore.data.AppDatabase
 import com.ciit.tadaimaotakustore.data.User
+import com.ciit.tadaimaotakustore.data.UserDatabase
 import com.ciit.tadaimaotakustore.databinding.ActivityRegistrationBinding
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
@@ -125,7 +125,7 @@ class Registration : AppCompatActivity() {
                     passwordHash = passwordHash
                 )
                 lifecycleScope.launch {
-                    val userDao = AppDatabase.getDatabase(applicationContext).userDao()
+                    val userDao = UserDatabase.getDatabase(applicationContext).userDao()
                     userDao.addUser(user)
                     showSuccessToast()
                     val intent = Intent(this@Registration, MainActivity::class.java)

@@ -1,5 +1,6 @@
 package com.ciit.tadaimaotakustore
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -29,6 +30,8 @@ class HomeScreenActivity : AppCompatActivity() {
     private var wishlistBadge: TextView? = null
     private var cartBadge: TextView? = null
     private var lastBackPressTime: Long = 0
+    private lateinit var sharedPreferences: SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +69,25 @@ class HomeScreenActivity : AppCompatActivity() {
         cartViewModel.totalCartItemQuantity.observe(this) { count ->
             updateCartBadge(count)
         }
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("TadaimaOtakuStorePrefs", MODE_PRIVATE)
+
+        // Update Navigation Header
+        updateNavHeader()
+    }
+
+    private fun updateNavHeader() {
+        val headerView = binding.navView.getHeaderView(0)
+        val navHeaderName = headerView.findViewById<TextView>(R.id.nav_header_name)
+        val navHeaderEmail = headerView.findViewById<TextView>(R.id.nav_header_email)
+
+        // Get user data from SharedPreferences
+        val firstName = sharedPreferences.getString("USER_FIRST_NAME", "Hello, Otaku")
+        val email = sharedPreferences.getString("USER_EMAIL", "otaku@tadaima.com")
+
+        navHeaderName.text = "Hello, $firstName"
+        navHeaderEmail.text = email
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -1,13 +1,15 @@
 package com.ciit.tadaimaotakustore
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.ciit.tadaimaotakustore.data.AppDatabase
+import com.ciit.tadaimaotakustore.data.UserDatabase
 import com.ciit.tadaimaotakustore.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.signUpButton.setOnClickListener {
-            val intent = Intent(this, Registration::class.java)
+            val intent = Intent(this@MainActivity, Registration::class.java)
             startActivity(intent)
         }
 
@@ -55,10 +57,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            val userDao = AppDatabase.getDatabase(applicationContext).userDao()
+            val userDao = UserDatabase.getDatabase(applicationContext).userDao()
             val user = userDao.getUserByEmail(email)
 
             if (user != null && user.passwordHash == hashPassword(password)) {
+                // Save username to SharedPreferences
+                val sharedPref = PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
+                with(sharedPref.edit()) {
+                    putString("USERNAME", user.username)
+                    apply()
+                }
+
                 val intent = Intent(this@MainActivity, HomeScreenActivity::class.java)
                 startActivity(intent)
                 finish()
